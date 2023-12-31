@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Page 1</title>
+		<link rel="stylesheet" href="styles.css" />
+		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <script src="./index.js"></script>
+	</head>
+	<body>
+        <div class="main_box">
+            <div class="sidebar_menu">
+                <div class="logo">
+                    <i class="bx bx-list-ul"></i>
+                    <a href="#">Menu</a>
+                </div>
+                <div class="search">
+                    <input type="text" class="search__input" placeholder="Search...">
+                </div>
+                <ul class="menu">
+                    <h3>Tasks</h3>
+                    <li><a href="#"><i class="bx bx-chevrons-right"></i>
+                        Upcoming <span class="notification">2</span></a></li>
+                    <li><a href="#"><i class="bx bx-list-ul"></i>
+                        Today<span class="notification">3</span></a></li>
+                    <li><a href="#"><i class="bx bx-calendar"></i>
+                        Calender</a></li>
+                    <li><a href="#"><i class="bx bxs-note"></i>
+                        Sticky Wall</a></li>
+                    <hr>
+                    <h3>Lists</h3>
+                    <li><a href="#"><i class="bx bxs-square-rounded" id="randomSquare1"></i>
+                        Personnal</a></li>
+                    <li><a href="#"><i class="bx bxs-square-rounded" id="randomSquare2"></i>
+                        Work</a></li>
+                    <li><a href="#"><i class="bx bxs-add-to-queue" ></i>
+                        Add new list</a></li>
+                    <hr>
+                    <h3>Tags</h3>
+                  
+                    <hr>
+                </ul>
+                <div class="actions">
+                    <ul>
+                        <li><a href="#"><i class="bx bx-cog"></i>
+                            Settings</a></li>
+                        <li><a href="#"><i class="bx bx-log-out"></i>
+                            Sign out</a></li>
+                    </ul>
+                </div>
+                <div class="social_media">
+                    <a href="#"><i class="bx bxl-facebook"></i></a>
+                    <a href="#"><i class="bx bxl-instagram"></i></a>
+                    <a href="#"><i class="bx bxl-gmail"></i></a>
+                </div>
+            </div>
+            <div class="Today_box">
+                <div class="todo-app">
+                    <h2>Today</h2>
+                    <div class="row">
+                        <input type="text" id="input-box" placeholder="Add your text">
+                        <button onclick="addTask()">Add</button>
+                    </div>
+                    <ul id="list-tasks">
+                        <!-- <li class="checked">Task 1</li>
+                        <li>Task 2</li>
+                        <li>Task 3</li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+    </body>
+</html>

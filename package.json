@@ -1,0 +1,21 @@
+{
+  "name": "code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "author": "Ghada",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^9.2.2",
+    "cjs": "^0.0.11",
+    "cjs-loader": "^0.1.0",
+    "express": "^4.18.2",
+    "mysql2": "^3.6.5",
+    "sequelize": "^6.35.2",
+    "sqlite3": "^5.1.6"
+  }
+}

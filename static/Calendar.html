@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Calendar</title>
+		<link rel="stylesheet" href="styles.css" />
+		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <script src="./index.js"></script>
+	</head>
+	<body>
+        <div class="main_box">
+            <div class="sidebar_menu">
+                <div class="logo">
+                    <i class="bx bx-list-ul"></i>
+                    <a href="#">Menu</a>
+                </div>
+                <div class="search">
+                    <input type="text" class="search__input" placeholder="Search...">
+                </div>
+                <ul class="menu">
+                    <h3>Tasks</h3>
+                    <li><a href="#"><i class="bx bx-chevrons-right"></i>
+                        Upcoming <span class="notification">2</span></a></li>
+                    <li><a href="#"><i class="bx bx-list-ul"></i>
+                        Today<span class="notification">3</span></a></li>
+                    <li><a href="#"><i class="bx bx-calendar"></i>
+                        Calender</a></li>
+                    <li><a href="#"><i class="bx bxs-note"></i>
+                        Sticky Wall</a></li>
+                    <hr>
+                    <h3>Lists</h3>
+                    <li><a href="#"><i class="bx bxs-square-rounded" id="randomSquare1"></i>
+                        Personnal</a></li>
+                    <li><a href="#"><i class="bx bxs-square-rounded" id="randomSquare2"></i>
+                        Work</a></li>
+                    <li><a href="#"><i class="bx bxs-add-to-queue" ></i>
+                        Add new list</a></li>
+                    <hr>
+                    <h3>Tags</h3>
+                  
+                    <hr>
+                </ul>
+                <div class="actions">
+                    <ul>
+                        <li><a href="#"><i class="bx bx-cog"></i>
+                            Settings</a></li>
+                        <li><a href="#"><i class="bx bx-log-out"></i>
+                            Sign out</a></li>
+                    </ul>
+                </div>
+                <div class="social_media">
+                    <a href="#"><i class="bx bxl-facebook"></i></a>
+                    <a href="#"><i class="bx bxl-instagram"></i></a>
+                    <a href="#"><i class="bx bxl-gmail"></i></a>
+                </div>
+            </div>
+            <div class="Calender-box">
+
+                <div class="left">
+                    <div class="Calendar">
+
+                        <div class="Month">
+                            <i class='bx bx-left-arrow-alt prev'></i>
+                            <div class="Date"></div>
+                            <i class='bx bx-right-arrow-alt next'></i>
+                        </div>
+
+                        <div class="weekdays">
+                            <div>Sun</div>
+                            <div>Mon</div>
+                            <div>Tues</div>
+                            <div>Wed</div>
+                            <div>Thur</div>
+                            <div>Fri</div>
+                            <div>Sat</div>
+                        </div>
+
+                        <div class="Days">
+                            <!-- <div class="day prev-date">30</div>
+                            <div class="day prev-date">31</div>
+                            <div class="day">1</div>
+                            <div class="day">2</div>
+                            <div class="day">3</div>
+                            <div class="day">4</div>
+                            <div class="day acive Event">5</div>
+                            <div class="day">6</div>
+                            <div class="day">7</div>
+                            <div class="day">8</div>
+                            <div class="day">9</div>
+                            <div class="day">10</div>
+                            <div class="day">11</div>
+                            <div class="day">12</div>
+                            <div class="day">13</div>
+                            <div class="day">14</div>
+                            <div class="day today ">15</div>
+                            <div class="day Event">16</div>
+                            <div class="day">17</div>
+                            <div class="day">18</div>
+                            <div class="day">19</div>
+                            <div class="day">20</div>
+                            <div class="day">21</div>
+                            <div class="day">22</div>
+                            <div class="day Event">23</div>
+                            <div class="day">24</div>
+                            <div class="day">25</div>
+                            <div class="day">26</div>
+                            <div class="day">27</div>
+                            <div class="day">28</div>
+                            <div class="day">29</div>
+                            <div class="day">30</div>
+                            <div class="day next-date">1</div>
+                            <div class="day next-date">2</div>
+                            <div class="day next-date">3</div> -->
+                        </div>
+
+                        <div class="goto-today">
+                            <div class="goto">
+                                <input type="text" placeholder="mm/yyyy" class="date-input">
+                                <button class="goto-btn">go</button>
+                            </div>
+                            <button class="today-btn">Today</button>
+                        </div>
+
+                        
+                    </div>
+                </div>
+
+                <div class="right">
+                    <div class="today-date">
+                        <div class="event-day">Wed</div>
+                        <div class="event-date">16 Nov 2023</div>
+                    </div>
+                    <div class="events">
+                        <div class="add-event-wrapper">
+                            <div class="add-event-header">
+                                <div class="title">Add Event</div>
+                                <i class="bx bx-window-close"></i>
+                            </div>
+                            <div class="add-event-body">
+
+                                <div class="add-event-input">
+                                    <input type="text" placeholder="Event Name" class="event-name">
+                                </div>
+
+                                <div class="add-event-input">
+                                    <input type="text" placeholder="Event Time From" class="event-time-from">
+                                </div>
+
+                                <div class="add-event-input">
+                                    <input type="text" placeholder="Event Time To" class="event-time-to">
+                                </div>
+
+                                <div class="add-event-footer">
+                                    <button class="add-event-btn">Add Event</button>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- <div class="event">
+                            <div class="title">
+                                <i class="bx bx-radio-circle-marked"></i>
+                                <h3 class="event-title">Event 1</h3>
+                            </div>
+                            <div class="evebt-time">10:00 AM - 12:00 PM </div>
+                        </div> -->
+                    </div>
+                    <button class="Add-event">
+                        <i class="bx bx-plus"></i>
+                    </button>
+                </div>
+
+
+            </div>
+                
+        </div>
+    </body>
+</html>     
+        
