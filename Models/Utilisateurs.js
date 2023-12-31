@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize')
 const db = require('./DB.js')
 
-const   Utilisateurs = db.define('Utilisateurs', {
+const Utilisateurs = db.define('Utilisateurs', {
     FullName: {
       type: DataTypes.STRING,
       allowNull: false
@@ -13,13 +13,10 @@ const   Utilisateurs = db.define('Utilisateurs', {
         isEmail: true 
       }
     },
-
     Password: {
         type: DataTypes.STRING,
         allowNull: false
       },
-
-
     Gender: {
         type: DataTypes.STRING,
         allowNull: false,

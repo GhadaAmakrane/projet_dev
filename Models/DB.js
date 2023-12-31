@@ -1,10 +1,9 @@
-
-
-const { Sequelize } = require('sequelize');
+const { Sequelize } = require('sequelize');
+path = require('path')
 
 const db = new Sequelize({
     dialect: 'sqlite',
-    storage: "C:\Users\ghada\Downloads\sqlite-tools-win-x64-3440200\sqlite3.exe"
+    storage: path.join(__dirname, 'db.sqlite')
 });
 
 module.exports = db
