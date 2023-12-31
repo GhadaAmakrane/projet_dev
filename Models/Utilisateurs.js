@@ -7,7 +7,7 @@ const   Utilisateurs = db.define('Utilisateurs', {
       allowNull: false
     },
     Email: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         isEmail: true 
@@ -15,13 +15,13 @@ const   Utilisateurs = db.define('Utilisateurs', {
     },
 
     Password: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false
       },
 
 
     Gender: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
             isIn: [['male', 'female']] 
@@ -30,17 +30,17 @@ const   Utilisateurs = db.define('Utilisateurs', {
 
   },);
 
-async function initDB() {
-    await sequelize.sync()
-    var data = await Utilisateurs.create({
-        FullName: "Ghada ",
-        Email: "ghada.amakrane1@gmail.com",
-        Password:"1234",
-        Gender:"female"
-    })
-    console.log("utilisateur crée : ")
-    console.log(data.toJSON())
+// async function initDB() {
+//     await sequelize.sync()
+//     var data = await Utilisateurs.create({
+//         FullName: "Ghada ",
+//         Email: "ghada.amakrane1@gmail.com",
+//         Password:"1234",
+//         Gender:"female"
+//     })
+//     console.log("utilisateur crée : ")
+//     console.log(data.toJSON())
     
-}
+// }
 
 module.exports = Utilisateurs
