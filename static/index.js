@@ -25,7 +25,7 @@
 
 function Submit() {
 	//Compare Password
-	var entree = document.getElementById("entree").value;
+	var entree = document.getElementById("Password").value;
 	var verification = document.getElementById("verification").value;
 
 	if(entree == verification) {
