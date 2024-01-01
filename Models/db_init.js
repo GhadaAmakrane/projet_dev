@@ -1,5 +1,6 @@
 const userModel = require('./Utilisateurs.js');
 const db = require('./DB.js');
+const eventModel = require('./Evenements.js')
 
 
 async function initDB() {
@@ -17,6 +18,14 @@ async function initDB() {
         Email: "sara.amakrane1@gmail.com",
         Password:"ghada",
         Gender: "female"
+    })
+
+    const sara = await userModel.findOne({ where: { FullName: "Sara" }});
+
+    await eventModel.create({
+        title:"apprendre",
+        description: "ggggggggggggggg",
+        creator: "Sara"
     })
 
 }
