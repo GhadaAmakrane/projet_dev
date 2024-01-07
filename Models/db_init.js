@@ -25,6 +25,7 @@ async function initDB() {
     await eventModel.create({
         title:"apprendre",
         description: "ggggggggggggggg",
+        dateARealiser : new Date('2024-12-31'),
         creator: "Sara"
     })
 

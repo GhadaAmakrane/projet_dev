@@ -1,6 +1,8 @@
 
 // cacher le menu 
 
+const { response } = require("express");
+
 // document.addEventListener('DOMContentLoaded',function() {
 // 	const logoIcon = document.querySelector('.sidebar_menu .logo i');
 // 	const menu = document.querySelector('.sidebar_menu .menu');
@@ -375,7 +377,36 @@ function addNote() {
     // saveData();
 }
 
+function getEventsForUser(userName) {
+	fetch(`/events/${userName}`)
+	  .then(response => {
+		if (!response.ok) {
+		  throw new Error('Erreur de réseau');
+		}
+		return response.json(); 
+	  })
+	  .then(data => {
+		console.log(data); // Utilisez les données récupérées ici
+	  })
+	  .catch(error => {
+		console.error('Erreur :', error);
+	  });
+  }
 
-
-
-
+function getUsernameAndDisplay() {
+    fetch('/getUsername')
+        .then(response => response.json())
+        .then(data => {
+            const username = data.username;
+            console.log(username);
+            if (username) {
+                const usernameDisplay = document.getElementById('Fullname');
+                if (usernameDisplay) {
+                    usernameDisplay.textContent = `Welcome, ${username}!`;
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}

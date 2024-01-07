@@ -12,6 +12,10 @@ const Evenements = db.define('Evenements', {
     type: DataTypes.TEXT,
     allowNull: true,
   },
+  dateARealiser: {
+    type: DataTypes.DATE, 
+    allowNull: false, 
+  },
 });
 
 Evenements.belongsTo(Utilisateurs, { foreignKey: 'FullName'}); 
