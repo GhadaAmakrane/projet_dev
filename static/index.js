@@ -1,7 +1,6 @@
 
 // cacher le menu 
 
-const { response } = require("express");
 
 // document.addEventListener('DOMContentLoaded',function() {
 // 	const logoIcon = document.querySelector('.sidebar_menu .logo i');
@@ -393,20 +392,20 @@ function getEventsForUser(userName) {
 	  });
   }
 
-function getUsernameAndDisplay() {
-    fetch('/getUsername')
-        .then(response => response.json())
-        .then(data => {
-            const username = data.username;
-            console.log(username);
-            if (username) {
-                const usernameDisplay = document.getElementById('Fullname');
-                if (usernameDisplay) {
-                    usernameDisplay.textContent = `Welcome, ${username}!`;
-                }
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-}
+document.addEventListener('DOMContentLoaded' , ()=>{
+	fetch('/getUsername')
+		.then(response => response.json())
+		.then(data => {
+			const username = data.username;
+			if(username) {
+				const usernameDispaly = document.getElementById('Fullname');
+				if(usernameDispaly) {
+					usernameDispaly.textContent = `Welcome, ${username}!`;
+				}
+			}
+		})
+		.catch(error => {
+			console.error('Error:' , error);
+});
+
+});

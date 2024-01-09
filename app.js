@@ -25,6 +25,8 @@ app.get('/getUsername' , (req, res) => {
   res.json({username: username})
 })
 
+app.post('/event',Evenements.CreateEventToday);
+
 app.get('/register', (req, res) => {
   res.sendFile(path.join(__dirname, 'static', 'RegisterPage.html'));
 });
