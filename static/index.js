@@ -89,8 +89,8 @@ function addTask() {
 	// inputBox.value="";
 	// saveData();
 	const newEvent = {
-		eventName : document.getElementById("input-box").value,
-		utilisateur : document.getElementById("Fullname").textContent,
+		title : document.getElementById("input-box").value,
+		FullName : document.getElementById("Fullname").textContent,
 	} 
 	const requestOptions = {
 		method: 'POST',
@@ -425,7 +425,7 @@ document.addEventListener('DOMContentLoaded' , ()=>{
 			if(username) {
 				const usernameDispaly = document.getElementById('Fullname');
 				if(usernameDispaly) {
-					usernameDispaly.textContent = `${username}`;
+					usernameDispaly.textContent = username;
 				}
 			}
 		})
