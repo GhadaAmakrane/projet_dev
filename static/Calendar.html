@@ -10,6 +10,9 @@
         <script src="./index.js"></script>
 	</head>
 	<body>
+        <div class="header">
+            <div id="FullName"></div>
+        </div>
         <div class="main_box">
             <div class="sidebar_menu">
                 <div class="logo">
@@ -141,30 +144,30 @@
                             <div class="add-event-body">
 
                                 <div class="add-event-input">
-                                    <input type="text" placeholder="Event Name" class="event-name">
+                                    <input type="text" id="title" placeholder="Event Name" class="event-name">
                                 </div>
 
                                 <div class="add-event-input">
-                                    <input type="text" placeholder="Event Time From" class="event-time-from">
+                                    <input type="text"  id ="description" placeholder="Event description" class="event-time-from">
                                 </div>
 
                                 <div class="add-event-input">
-                                    <input type="text" placeholder="Event Time To" class="event-time-to">
+                                    <input type="text" id ="date" placeholder="Event date" class="event-time-to">
                                 </div>
 
                                 <div class="add-event-footer">
-                                    <button class="add-event-btn">Add Event</button>
+                                    <button class="add-event-btn" onclick="addTaskOnDate()">Add Event</button>
                                 </div>
 
                             </div>
                         </div>
-                        <!-- <div class="event">
+                        <div class="event">
                             <div class="title">
                                 <i class="bx bx-radio-circle-marked"></i>
                                 <h3 class="event-title">Event 1</h3>
                             </div>
                             <div class="evebt-time">10:00 AM - 12:00 PM </div>
-                        </div> -->
+                        </div>
                     </div>
                     <button class="Add-event">
                         <i class="bx bx-plus"></i>

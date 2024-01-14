@@ -1,28 +1,5 @@
 
-// cacher le menu 
 
-
-// document.addEventListener('DOMContentLoaded',function() {
-// 	const logoIcon = document.querySelector('.sidebar_menu .logo i');
-// 	const menu = document.querySelector('.sidebar_menu .menu');
-
-// 	let menuVisible = true; // Variable pour suivre l'état actuel du menu
-
-//   if (logoIcon && menu) {
-//     logoIcon.addEventListener('click', function() {
-//       if (menuVisible) {
-//         menu.style.display = 'none'; // Rend le menu invisible
-//       } else {
-//         menu.style.display = 'block'; // Rend le menu visible
-//       }
-//       menuVisible = !menuVisible; // Inverse l'état du menu (visible/invisible)
-//     });
-//   } else {
-//     console.log("Les éléments n'ont pas été trouvés.");
-//   }
-// });
-
-//comaprer les password entrés 
 
 function Submit() {
 	//Compare Password
@@ -68,28 +45,57 @@ function Submit() {
 }
 
 
-const inputBox = document.getElementById("input-box");
+// const inputBox = document.getElementById("input-box");
+
+
+
+function getEventUser() {
+    const FullName = document.getElementById("Fullname").textContent;
+    const listBox = document.getElementById("list-tasks");
+
+    fetch(`/event/${FullName}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`La requête a échoué avec le code ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(jsonData => {			
+            try {
+				listBox.innerHTML = '';
+                const parsedData = jsonData.data;
+
+                // Le reste de votre code pour afficher les éléments dans la listBox
+                parsedData.forEach(item => {
+					console.log(item);
+                    let li = document.createElement("li");
+                    li.innerHTML = item.title;
+					li.setAttribute("id", item.id)
+                    listBox.appendChild(li);
+
+                    let span = document.createElement("span");
+                    span.innerHTML = "\u00d7";
+                    span.addEventListener("click", function () {
+						deleteTask(item.id);
+                    });
+                    li.appendChild(span);
+                });
+            } catch (error) {
+                console.error('Erreur lors de l\'analyse des données JSON :', error.message);
+            }
+        })
+        .catch(error => {
+            console.error('Erreur lors de la récupération des événements :', error.message);
+        });
+}
+
 
 
 function addTask() {
 	
-	// const inputBox = document.getElementById("input-box");
-	// const listBox = document.getElementById("list-tasks");
-	// if(inputBox.value === ''){
-	// 	alert("You must write something!");
-	// }
-	// else{
-	// 	let li = document.createElement("li");
-	// 	li.innerHTML = inputBox.value;
-	// 	listBox.appendChild(li);
-	// 	let span = document.createElement("span");
-	// 	span.innerHTML = "\u00d7";
-	// 	li.appendChild(span);
-	// }
-	// inputBox.value="";
-	// saveData();
+	title = document.getElementById("input-box")
 	const newEvent = {
-		title : document.getElementById("input-box").value,
+		title : title.value,
 		FullName : document.getElementById("Fullname").textContent,
 	} 
 	const requestOptions = {
@@ -109,11 +115,82 @@ function addTask() {
 		  return response.json(); 
 		})
 		.then(data => {
-		  console.log('Tag ajouté avec succès:', data);
+		  console.log('Evenement ajouté avec succès:', data);
 		})
 		.catch(error => {
-		  console.error('Erreur lors de l\'ajout du tag:', error.message);
+		  console.error('Erreur lors de l\'ajout de l\'evenement :', error.message);
 	});
+	title.value = '';
+	getEventUser();
+}
+
+async function deleteTask(id){
+	title = document.getElementById("input-box")
+	const Event = {
+		eventId : id,
+	} 
+	FullName = document.getElementById("Fullname").textContent;
+
+	const requestOptions = {
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json' 
+		  },
+		
+		body: JSON.stringify(Event) 
+	  };
+	  // Effectuer la requête Fetch
+	await fetch(`/event/${FullName}`, requestOptions)
+		.then(response => {
+		  if (!response.ok) {
+			throw new Error(`La requête a échoué avec le code ${response.status}`);
+		  }
+		  return response.json(); 
+		})
+		.then(data => {
+		  console.log('Evenement supprimé avec succès:', data);
+		})
+		.catch(error => {
+		  console.error('Erreur lors de la supression de l\'evenement :', error.message);
+	});
+	getEventUser();
+
+}
+
+function addTaskOnDate() {
+	title = document.getElementById("title");
+	description = document.getElementById("description") ;
+	date = document.getElementById('date');
+
+	const newEvent = {
+		title : title.value,
+		FullName : document.getElementById("Fullname").textContent,
+	}
+
+	const requestOptions = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json' 
+		  },
+		
+		body: JSON.stringify(newEvent) 
+	  };
+
+	  fetch('/eventOnDay', requestOptions)
+		.then(response => {
+		  if (!response.ok) {
+			throw new Error(`La requête a échoué avec le code ${response.status}`);
+		  }
+		  return response.json(); 
+		})
+		.then(data => {
+		  console.log('Evenement ajouté avec succès:', data);
+		})
+		.catch(error => {
+		  console.error('Erreur lors de l\'ajout de l\'evenement :', error.message);
+	});
+	title.value = '';
+	getEventUser();	// modifier pour calendar
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -122,10 +199,10 @@ document.addEventListener('DOMContentLoaded', function() {
     listBox.addEventListener("click", function(e) {
         if (e.target.tagName === "LI") {
             e.target.classList.toggle("checked");
-			saveData()
+			// saveData()
         } else if (e.target.tagName === "SPAN") {
             e.target.parentElement.remove();
-			saveData()
+			// saveData()
         }
     }, false);
 });
@@ -140,8 +217,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const todaybtn = document.querySelector(".today-btn");
     const gotobtn = document.querySelector(".goto-btn");
     const dateInput = document.querySelector(".date-input");
-
-
 
 
     let today = new Date();
@@ -417,20 +492,27 @@ function getEventsForUser(userName) {
 	  });
   }
 
-document.addEventListener('DOMContentLoaded' , ()=>{
-	fetch('/getUsername')
+async function getUsername() {
+	await fetch('/getUsername')
 		.then(response => response.json())
 		.then(data => {
-			const username = data.username;
-			if(username) {
-				const usernameDispaly = document.getElementById('Fullname');
-				if(usernameDispaly) {
-					usernameDispaly.textContent = username;
-				}
-			}
+			return  data.username;
+			
 		})
 		.catch(error => {
 			console.error('Error:' , error);
-});
+	
+		});
 
+}
+
+document.addEventListener('DOMContentLoaded' , async ()=>{
+	username = getUsername();
+	if(username) {
+		const usernameDispaly = document.getElementById('Fullname');
+		if(usernameDispaly) {
+			usernameDispaly.textContent = username;
+		}
+	}
+	getEventUser();
 });
