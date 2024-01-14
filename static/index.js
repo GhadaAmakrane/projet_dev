@@ -50,7 +50,7 @@ function Submit() {
 
 
 function getEventUser() {
-    const FullName = document.getElementById("Fullname").textContent;
+    const FullName = localStorage.getItem("username");
     const listBox = document.getElementById("list-tasks");
 
     fetch(`/event/${FullName}`)
@@ -96,7 +96,7 @@ function addTask() {
 	title = document.getElementById("input-box")
 	const newEvent = {
 		title : title.value,
-		FullName : document.getElementById("Fullname").textContent,
+		FullName : localStorage.getItem("username"),
 	} 
 	const requestOptions = {
 		method: 'POST',
@@ -129,7 +129,7 @@ async function deleteTask(id){
 	const Event = {
 		eventId : id,
 	} 
-	FullName = document.getElementById("Fullname").textContent;
+	FullName = localStorage.getItem("username");
 
 	const requestOptions = {
 		method: 'DELETE',
@@ -164,7 +164,7 @@ function addTaskOnDate() {
 
 	const newEvent = {
 		title : title.value,
-		FullName : document.getElementById("Fullname").textContent,
+		FullName : localStorage.getItem("username"),
 	}
 
 	const requestOptions = {
@@ -496,8 +496,7 @@ async function getUsername() {
 	await fetch('/getUsername')
 		.then(response => response.json())
 		.then(data => {
-			return  data.username;
-			
+			localStorage.setItem("username", data.username)
 		})
 		.catch(error => {
 			console.error('Error:' , error);
@@ -507,11 +506,12 @@ async function getUsername() {
 }
 
 document.addEventListener('DOMContentLoaded' , async ()=>{
-	username = getUsername();
+	await getUsername()
+	username = localStorage.getItem("username");
 	if(username) {
 		const usernameDispaly = document.getElementById('Fullname');
 		if(usernameDispaly) {
-			usernameDispaly.textContent = username;
+			usernameDispaly.textContent = `Welcome ${username} !`;
 		}
 	}
 	getEventUser();

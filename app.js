@@ -36,7 +36,7 @@ app.get('/register', (req, res) => {
 });
 app.post('/register', utilisateurController.createUtilisateur);
 
-app.post('/eventOnDay',eventController.createEvents)
+// app.post('/eventOnDay',eventController.createEvents)
 app.get('eventOnDay',eventController.getEventUserDay)
 
 app.post('/events/:FullName', utilisateurController.createEvents);
