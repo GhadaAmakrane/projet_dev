@@ -15,9 +15,12 @@ const Evenements = db.define('Evenements', {
   dateARealiser: {
     type: DataTypes.DATE, 
     allowNull: false, 
+    defaultValue : new Date(),
   },
 });
 
 Evenements.belongsTo(Utilisateurs, { foreignKey: 'FullName'}); 
+Utilisateurs.hasMany(Evenements, { foreignKey: 'FullName'}); 
+
 
 module.exports = Evenements;

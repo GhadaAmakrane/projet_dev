@@ -73,21 +73,47 @@ const inputBox = document.getElementById("input-box");
 
 function addTask() {
 	
-	const inputBox = document.getElementById("input-box");
-	const listBox = document.getElementById("list-tasks");
-	if(inputBox.value === ''){
-		alert("You must write something!");
-	}
-	else{
-		let li = document.createElement("li");
-		li.innerHTML = inputBox.value;
-		listBox.appendChild(li);
-		let span = document.createElement("span");
-		span.innerHTML = "\u00d7";
-		li.appendChild(span);
-	}
-	inputBox.value="";
-	saveData();
+	// const inputBox = document.getElementById("input-box");
+	// const listBox = document.getElementById("list-tasks");
+	// if(inputBox.value === ''){
+	// 	alert("You must write something!");
+	// }
+	// else{
+	// 	let li = document.createElement("li");
+	// 	li.innerHTML = inputBox.value;
+	// 	listBox.appendChild(li);
+	// 	let span = document.createElement("span");
+	// 	span.innerHTML = "\u00d7";
+	// 	li.appendChild(span);
+	// }
+	// inputBox.value="";
+	// saveData();
+	const newEvent = {
+		eventName : document.getElementById("input-box").value,
+		utilisateur : document.getElementById("Fullname").textContent,
+	} 
+	const requestOptions = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json' 
+		  },
+		
+		body: JSON.stringify(newEvent) 
+	  };
+	  // Effectuer la requête Fetch
+	fetch('/event', requestOptions)
+		.then(response => {
+		  if (!response.ok) {
+			throw new Error(`La requête a échoué avec le code ${response.status}`);
+		  }
+		  return response.json(); 
+		})
+		.then(data => {
+		  console.log('Tag ajouté avec succès:', data);
+		})
+		.catch(error => {
+		  console.error('Erreur lors de l\'ajout du tag:', error.message);
+	});
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -364,7 +390,6 @@ function addNote() {
         li.ondblclick = function() {
 			list_notes.removeChild(this);
 		}
-		
 
         list_notes.appendChild(li);
     }
@@ -400,7 +425,7 @@ document.addEventListener('DOMContentLoaded' , ()=>{
 			if(username) {
 				const usernameDispaly = document.getElementById('Fullname');
 				if(usernameDispaly) {
-					usernameDispaly.textContent = `Welcome, ${username}!`;
+					usernameDispaly.textContent = `${username}`;
 				}
 			}
 		})
